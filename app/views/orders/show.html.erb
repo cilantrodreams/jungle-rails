@@ -1,6 +1,6 @@
 <section class="orders-show">
   <header class="page-header">
-    <h1>Order #<%= @order.id %></h1>
+    <h1>Order #<%= @line_items[0].order_id %></h1>
   </header>
 
   <div class="order-summary jumbotron">
@@ -16,24 +16,30 @@
           </tr>
         </thead>
         <tbody>
-          <% @products.each do |product| %>
+          <% @line_items.each do |line| %>
             <tr>
               <td>
-                <%= image_tag product.image.tiny %>
+                <%= image_tag line.product.image.tiny %>
               </td>
               <td>
-                <h4><%= product.name %></h4>
+                <h4><%= line.product.name %></h4>
                 <br>
-                <p><%= product.description %></p>
+                <p><%= line.product.description %></p>
               </td>
               <td>
-                <%= humanized_money_with_symbol product.price %>
+                <%= humanized_money_with_symbol line.item_price_cents / 100.0 %>
               </td>
               <td>
-                <%= humanized_money_with_symbol product.price %>
+                <%= line.quantity %>
+              </td>
+              <td>
+                <%= humanized_money_with_symbol line.total_price_cents / 100.0 %>
               </td>
             </tr>
           <% end %>
+          <tr>
+
+          </tr>
         </tbody>
       </table>
     </div>
