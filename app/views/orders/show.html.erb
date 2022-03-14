@@ -13,6 +13,7 @@
             <th>Unit Price</th>
             <th>Quantity</th>
             <th>Price</th>
+            <th>Total Price</th>
           </tr>
         </thead>
         <tbody>
@@ -38,7 +39,12 @@
             </tr>
           <% end %>
           <tr>
-
+            <td colspan="5">
+              <%= @line_items[0].order.email %> 
+            </td>
+            <td>
+              <%= humanized_money_with_symbol @line_items[0].order.total_cents / 100.0 %>
+            </td>
           </tr>
         </tbody>
       </table>
